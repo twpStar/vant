@@ -2,9 +2,9 @@
   <demo-section>
     <demo-block :title="t('type')">
       <div class="demo-button-row">
+        <van-button :likes="'222'" less-module='xw' tname='twp' type="primary">{{ t('default') }}</van-button>222
         <van-button type="primary">{{ t('primary') }}</van-button>
         <van-button type="info">{{ t('info') }}</van-button>
-        <van-button type="default">{{ t('default') }}</van-button>
       </div>
       <van-button type="danger">{{ t('danger') }}</van-button>
       <van-button type="warning">{{ t('warning') }}</van-button>
@@ -37,12 +37,12 @@
     </demo-block>
 
     <demo-block :title="t('icon')">
-      <van-button type="primary" icon="plus" />
-      <van-button type="primary" icon="plus" :text="t('button')" />
+      <van-button type="primary" icon="star-o" />
+      <van-button type="primary" icon="star-o" :text="t('button')" />
       <van-button
         plain
-        type="info"
-        icon="https://img.yzcdn.cn/vant/user-active.png"
+        type="primary"
+        icon="https://img.yzcdn.cn/vant/logo.png"
         :text="t('button')"
       />
     </demo-block>
@@ -71,7 +71,7 @@
       <van-button color="#7232dd" :text="t('pure')" />
       <van-button plain color="#7232dd" :text="t('pure')" />
       <van-button
-        color="linear-gradient(to right, #ff6034, #ee0a24)"
+        color="linear-gradient(to right, #4bb0ff, #6149f6)"
         :text="t('gradient')"
       />
     </demo-block>

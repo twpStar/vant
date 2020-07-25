@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-export { createNamespace } from './create';
+export { createNamespace, createNamespaceForLess,createNamespaceForComponent } from './create';
 export { addUnit } from './format/unit';
 
 export const inBrowser = typeof window !== 'undefined';

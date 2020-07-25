@@ -1,8 +1,9 @@
 // Utils
-import { createNamespace } from '../utils';
+import { createNamespace, createNamespaceForLess,createNamespaceForComponent } from '../utils';
 import { emit, inherit } from '../utils/functional';
 import { BORDER_SURROUND, WHITE } from '../utils/constant';
-import { routeProps, RouteProps, functionalRoute } from '../utils/router';
+import { routeProps, RouteProps, functionalRoute} from '../utils/router';
+import {  LessModuleProps, lessModuleProps } from '../utils/module';
 
 // Components
 import Icon from '../icon';
@@ -16,7 +17,7 @@ export type ButtonType = 'default' | 'primary' | 'info' | 'warning' | 'danger';
 
 export type ButtonSize = 'large' | 'normal' | 'small' | 'mini';
 
-export type ButtonProps = RouteProps & {
+export type ButtonProps = LessModuleProps & RouteProps & {
   tag: keyof HTMLElementTagNameMap | string;
   type: ButtonType;
   size: ButtonSize;
@@ -35,13 +36,14 @@ export type ButtonProps = RouteProps & {
   loadingSize: string;
   loadingType?: LoadingType;
   loadingText?: string;
+  likes:string;
 };
 
 export type ButtonEvents = {
   onClick?(event: Event): void;
 };
 
-const [createComponent, bem] = createNamespace('button');
+const createComponent = createNamespaceForComponent('button');
 
 function Button(
   h: CreateElement,
@@ -49,8 +51,10 @@ function Button(
   slots: DefaultSlots,
   ctx: RenderContext<ButtonProps>
 ) {
+  console.log('props:',props)
   const {
     tag,
+    lessModule,
     icon,
     type,
     color,
@@ -60,6 +64,8 @@ function Button(
     hairline,
     loadingText,
   } = props;
+
+  const  bem = createNamespaceForLess('button',lessModule);
 
   const style: Record<string, string | number> = {};
 
@@ -89,7 +95,6 @@ function Button(
   function onTouchstart(event: TouchEvent) {
     emit(ctx, 'touchstart', event);
   }
-
   const classes = [
     bem([
       type,
@@ -156,6 +161,7 @@ function Button(
 
 Button.props = {
   ...routeProps,
+  ...lessModuleProps,
   text: String,
   icon: String,
   color: String,
@@ -170,6 +176,7 @@ Button.props = {
   nativeType: String,
   loadingText: String,
   loadingType: String,
+  likes: String,
   tag: {
     type: String,
     default: 'button',
